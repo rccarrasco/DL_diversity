@@ -104,8 +104,9 @@ filenames = params['FILENAMES'].split()
 intervals = params['INTERVALS'].split()
 scale =  map(int, params['RICHNESS_SCALES'].split())
 
-for host, filename, years in zip(hosts, filenames, intervals):
+for host, filename, interval in zip(hosts, filenames, intervals):
     print('Processing', host)
+    first, last = map(int, interval.split('-'))
     df = pd.read_csv(filename, sep='\t').fillna('')
     df = df[(df.YEAR!='')&(df.SUBJECT_HEADINGS.str.len() > 1)]
     df['SUBJECT_HEADINGS'] = df.SUBJECT_HEADINGS.apply(lambda s: split(s, '@'))
@@ -113,16 +114,16 @@ for host, filename, years in zip(hosts, filenames, intervals):
     plot_subject_diversity(host, 
                            df, 
                            'SUBJECT_HEADINGS', 
-                           years,  
+                           range(first, last + 1),  
                            next(scale))
 
     print('DR_RATE=', dr_rate(df.SUBJECT_HEADINGS))
-    df['SH_SUBFIELDS'] = df['subject headings'].map(split_subject)
+    df['SH_SUBFIELDS'] = df['SUBJECT_HEADINGS'].map(split_subject)
     dfe = df.explode('SH_SUBFIELDS')
     plot_subject_diversity(host, 
                            dfe,
                            'SH_SUBFIELDS', 
-                           years, 
+                           range(first, last + 1), 
                            next(scale))
 
     
