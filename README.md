@@ -1,3 +1,6 @@
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.6389967.svg)](https://doi.org/10.5281/zenodo.6389967)
+
 # DL_diversity
 Methods to evaluate Shannon diversity in Digital Libraries
 
