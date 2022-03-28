@@ -118,7 +118,7 @@ for host, filename, interval in zip(hosts, filenames, intervals):
                            next(scale))
 
     print('DR_RATE=', dr_rate(df.SUBJECT_HEADINGS))
-    df['SH_SUBFIELDS'] = df['SUBJECT_HEADINGS'].map(split_subject)
+    df['SH_SUBFIELDS'] = df['SUBJECT_HEADINHS'].map(split_subject)
     dfe = df.explode('SH_SUBFIELDS')
     plot_subject_diversity(host, 
                            dfe,
