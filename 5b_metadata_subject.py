@@ -56,8 +56,6 @@ def plot_subject_diversity(host, df, column_name, years, r_scale=1):
 
 def split_subject(subject):
     """
-    
-
     Parameters
     ----------
     subject : str
